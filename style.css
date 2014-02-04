@@ -69,6 +69,7 @@ html, body {
     -webkit-animation: 1300ms bobble infinite;
     -webkit-animation-timing-function: easeInOutSine; }
   .ui .getReady .score {
+    text-align: center;
     background-color: orange; }
   .ui .getReady .tapInstructions {
     position: absolute;
