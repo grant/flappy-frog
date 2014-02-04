@@ -1,0 +1,97 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+}
+
+.bg {
+	width: 100%;
+	height: 100%;
+	background-color: blue;
+}
+
+$landPercent: 20%;
+.land {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	.ground {
+		position: absolute;
+		width: 100%;
+		height: $landPercent;
+		bottom: 0;
+		background-color: green;
+	}
+
+	.pipes {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100% - $landPercent;
+	}
+}
+
+.ui {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	.menu, .getReady, .gameover {
+		position: absolute;
+		display: none;
+		width: 100%;
+		height: 100%;
+	}
+
+	// Components
+	h1.textTitle {
+		font-size: 40pt;
+	}
+
+	.menuButtons {
+		button {
+			background-color: black;
+		}
+	}
+
+	.textTitle {
+		position: absolute;
+		top: 20%;
+		text-align: middle;
+	}
+
+	// Pages
+	.getReady {
+		.score {
+			background-color: orange;
+		}
+
+		.tapInstructions {
+			position: absolute;
+			top: 40%;
+		}
+	}
+
+	.gameOver {
+		.scoreArea {
+			position: absolute;
+			top: 40%;
+			width: 50%;
+			height: 30%;
+			background-color: yellow;
+
+			.left {
+				float: left;
+			}
+			.right {
+				float: right;
+			}
+		}
+	}
+}
