@@ -22,6 +22,7 @@ $(function () {
 
 	// Tap click
 	$('.container').click(function () {
+		console.log('hi');
 		if (!inGame && isReady) {
 			// Start game
 			inGame = true;
@@ -30,17 +31,18 @@ $(function () {
 		}
 
 		if (inGame) {
-			vy -= CLICK_POWER;
-			console.log(vy);
+			vy = -CLICK_POWER;
 		}
 	});
 
 	// Game
-	var CLICK_POWER = 2;
+	var CLICK_POWER = 1.5;
+	var MAX_VY = 1.5;
+
 	var vy = 0;
 	var y = 0;
-	var g = 0.05;
-	$frog = $('.frog');
+	var g = 0.08;
+	var $frog = $('.frog');
 	function render() {
 		if (inGame) {
 			calculateWorld();
@@ -51,8 +53,8 @@ $(function () {
 	// Calculates stuff for the world
 	function calculateWorld () {
 		vy += g;
-		if (vy > 1) {
-			vy = 1;
+		if (vy > MAX_VY) {
+			vy = MAX_VY;
 		}
 		y += vy;
 	}
