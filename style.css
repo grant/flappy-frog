@@ -21,8 +21,8 @@ html, body {
   .land .frog {
     position: absolute;
     left: 33.3%;
-    width: 100px;
-    height: 100px;
+    width: 5%;
+    height: 9%;
     background-color: green; }
   .land .ground {
     position: absolute;
@@ -38,7 +38,7 @@ html, body {
       position: absolute;
       background-color: green;
       height: 100%;
-      width: 10%; }
+      width: 5%; }
 
 @-webkit-keyframes bobble {
   0% {

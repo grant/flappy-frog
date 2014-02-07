@@ -13,7 +13,6 @@ $(function () {
 	var score = 0;
 	var best = 0;
 
-	var gameTime =
 	$menu.show();
 
 	// Button clicks
@@ -32,40 +31,70 @@ $(function () {
 	// Tap click
 	$('.container').click(function () {
 		if (!inGame && isReady) {
-			// Start game
-			inGame = true;
-			isReady = false;
-			$getReady.find('.instructions').fadeOut(FADE_DURATION);
+			startGame();
 		}
 
 		if (inGame) {
 			vy = -CLICK_POWER;
-
-			// temp
-			gameover();
-			addPipe();
 		}
 	});
 
 	// Game
 	var CLICK_POWER = 1.5;
 	var MAX_VY = 1.5;
-	var PIPE_SPEED = 2; // % of screen width
+	var PIPE_SPEED = 0.3; // % of screen width
+	var PIPE_DELAY = 90; // frames between pipes
+	var START_PIPE_TIME = 30; // frames between game start and the first pipe
 
+	var frogXPercent = 33.3; // % x offset from the left of the screen
+
+	var gameTime; // frames since gameStartTime
+
+	var lastPipeTime; // gameTime when the last pipe was added
+	var nextPipeIndex = 0;
 	var pipes = [];
 
+	// calculated
+	var pipesPerScreen = 100/(PIPE_SPEED * PIPE_DELAY);
+	var timeFromNewPipeToScore = (100 - frogXPercent)/PIPE_SPEED; // 100 - 33.3 = PIPE_SPEED * t; Solve t
+	var firstScoreTime = START_PIPE_TIME + timeFromNewPipeToScore;
+
+	// frog init conditions
 	var vy = 0;
 	var y = 0;
 	var g = 0.08;
 	var $frog = $('.frog');
+	$frog.css('left', frogXPercent + '%');
 	var $pipeArea = $('.pipes');
 
+	// Starts the
+	function startGame () {
+		inGame = true;
+		isReady = false;
+		$getReady.find('.instructions').fadeOut(FADE_DURATION);
+		gameStartTime = new Date().getTime();
+		gameTime = 0;
+	}
+
 	// Renders a game frame
-	function render() {
+	function render () {
 		if (inGame) {
 			calculateWorld();
+
+			// Add pipe on certain times
+			var firstPipe = !lastPipeTime && gameTime > START_PIPE_TIME;
+			if (firstPipe || gameTime - lastPipeTime >= PIPE_DELAY) {
+				addPipe();
+				lastPipeTime = gameTime;
+			}
+
+			// Score
+			var firstScoreTime = (gameTime - START_PIPE_TIME - timeFromNewPipeToScore);
+			score = Math.max(0, Math.floor(1 + (firstScoreTime/PIPE_DELAY)));
 		}
 		renderWorld();
+
+		++gameTime;
 	}
 
 	// Calculates stuff for the world
