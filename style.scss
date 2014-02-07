@@ -42,9 +42,15 @@ $landPercent: 20%;
 
 	.pipes {
 		position: absolute;
-		top: 0;
 		width: 100%;
 		height: 100% - $landPercent;
+
+		.pipe {
+			position: absolute;
+			background-color: green;
+			height: 100%;
+			width: 10%;
+		}
 	}
 }
 
@@ -137,4 +143,9 @@ $landPercent: 20%;
 			}
 		}
 	}
+}
+
+.frogImg {
+	width: 5%;
+	height: 5%;
 }

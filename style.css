@@ -32,9 +32,13 @@ html, body {
     background-color: green; }
   .land .pipes {
     position: absolute;
-    top: 0;
     width: 100%;
     height: 80%; }
+    .land .pipes .pipe {
+      position: absolute;
+      background-color: green;
+      height: 100%;
+      width: 10%; }
 
 @-webkit-keyframes bobble {
   0% {
@@ -91,3 +95,7 @@ html, body {
       float: left; }
     .ui .gameOver .scoreArea .right {
       float: right; }
+
+.frogImg {
+  width: 5%;
+  height: 5%; }
